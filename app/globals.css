@@ -37,3 +37,28 @@ button:hover{
   background: rgba(63, 69, 79, 0.5);
   box-shadow: 2px 2px 0px #000;
 }
+.Sidebarlogin{
+    box-shadow: 3px 3px 0px #000;
+}
+.Sidebarlogin .signup{
+  box-shadow: 3px 3px 0 #222831;
+  background-color: #DFD0B8;
+}
+.Sidebarlogin .signup:hover{
+  background-color: #cdbda3;
+  cursor: pointer;
+}
+.Sidebarlogin .login{
+  border: solid 1px #DFD0B8;
+  cursor: pointer;
+  position: relative;
+}
+.Sidebarlogin .login::before{
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border: 1px solid #dfd0b873;
+}
