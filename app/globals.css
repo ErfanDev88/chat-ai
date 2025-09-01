@@ -2,65 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-::placeholder{
+::-webkit-scrollbar-corner {
+  background: #000 !important;
+}
+
+::placeholder {
   font-size: 15px;
   font-weight: 300;
-  color: #DFD0B8;
+  color: #dfd0b8;
   letter-spacing: 1.5px;
 }
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: var(--font-poppins);
 }
 
-.sidebar{
-  background-image: linear-gradient(to bottom, #252c36 40%, #5c6777 200%) !important;
-  box-shadow: inset 3px 3px 30px rgba(148, 137, 121, 0.10), 8px 5px 0px #000 !important;
+.sidebar {
+  background-image: linear-gradient(
+    to bottom,
+    #252c36 40%,
+    #5c6777 200%
+  ) !important;
+  box-shadow: inset 3px 3px 30px rgba(148, 137, 121, 0.1), 8px 5px 0px #000 !important;
 }
 
-button{
+button {
   box-shadow: 3px 3px 0px #000;
-  border: solid .8px rgba(0, 0, 0, 0.95);
+  border: solid 0.8px rgba(0, 0, 0, 0.95);
 }
-button:hover{
+button:hover {
   background: #3e444e;
 }
-.topics{
+.topics {
   border-top: solid 0.7px rgba(115, 123, 137, 0.39);
 }
-.topics span{
+.topics span {
   font-weight: 200;
 }
-.profile{
+.profile {
   border-top: solid 0.7px rgba(115, 123, 137, 0.39);
 }
-.navigator{
+.navigator {
   box-shadow: 1px 1px 0px #000;
 }
-.navigator:hover{
+.navigator:hover {
   background: rgba(63, 69, 79, 0.5);
   box-shadow: 2px 2px 0px #000;
 }
-.Sidebarlogin{
-    box-shadow: 3px 3px 0px #000;
+.Sidebarlogin {
+  box-shadow: 3px 3px 0px #000;
 }
-.Sidebarlogin .signup{
+.Sidebarlogin .signup {
   box-shadow: 3px 3px 0 #222831;
-  background-color: #DFD0B8;
+  background-color: #dfd0b8;
 }
-.Sidebarlogin .signup:hover{
+.Sidebarlogin .signup:hover {
   background-color: #cdbda3;
   cursor: pointer;
 }
-.Sidebarlogin .login{
-  border: solid 1px #DFD0B8;
+.Sidebarlogin .login {
+  border: solid 1px #dfd0b8;
   cursor: pointer;
   position: relative;
 }
-.Sidebarlogin .login::before{
-  content: '';
+.Sidebarlogin .login::before {
+  content: "";
   width: 100%;
   height: 100%;
   position: absolute;
@@ -69,18 +77,33 @@ button:hover{
   border: 1px solid #dfd0b873;
 }
 /* main */
-.container{
-
+main {
+  scrollbar-color: #393E46 #222831;
+  scrollbar-width: thin;
 }
-.input{
+.input {
   border: solid 0.8px #000000e4;
   box-shadow: 3px 4px 0 #000;
 }
-.input input:focus{
+.input input:focus {
   outline: none;
 }
 
-.suggestion{
+.suggestion {
   border: solid 0.8px #000000e4;
   box-shadow: 3px 4px 0 #000;
+}
+/* chat */
+
+.request {
+  border: solid 0.8px #000000e4;
+  box-shadow: 3px 4px 0 #000;
+}
+.response {
+  border-top: solid 0.8px rgba(34, 40, 49, 0.2);
+}
+.response div {
+  border: solid 0.8px #000000e4;
+  box-shadow: 3px 4px 0 #000;
+  background: linear-gradient(to bottom, #dfd0b8 0%, #807666 350%);
 }

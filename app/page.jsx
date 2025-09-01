@@ -7,30 +7,37 @@ import earthIcon from "@/public/earthIcon.png";
 import radioIcon from "@/public/radioIcon.png";
 import racecarIcon from "@/public/racecarIcon.png";
 import SuggestBtn from "@/components/SuggestBtn";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const [messages, setMessages] = useState([]);
+  const [error, setError] = useState("");
   const [input, setInput] = useState("");
-  console.log(messages);
+  const router = useRouter();
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
-
-    const newMessages = [...messages, { role: "user", text: input }];
-    setMessages(newMessages);
-    setInput("");
-
-    try {
-      const res = await axios.post("/api/chat", { message: input });
-      setMessages([...newMessages, { role: "bot", text: res.data.reply }]);
-    } catch {
-      setMessages([
-        ...newMessages,
-        { role: "bot", text: "Error getting response" },
-      ]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!input.trim()) {
+      setError("This field cannot be empty!");
+    } else {
+      setError("");
     }
+    console.log(input);
+
+    // const newMessages = [...messages, { role: "user", text: input }];
+    // setMessages(newMessages);
+    // setInput("");
+
+    // try {
+    //   const res = await axios.post("/api/chat", { message: input });
+    //   setMessages([...newMessages, { role: "bot", text: res.data.reply }]);
+    // } catch {
+    //   setMessages([
+    //     ...newMessages,
+    //     { role: "bot", text: "Error getting response" },
+    //   ]);
+    // }
   };
-  console.log(messages);
 
   return (
     <main className="m-auto">
@@ -84,8 +91,8 @@ export default function Home() {
           </svg>
         </h1>
         <form
-          action="#"
           className="flex flex-col justify-between items-center gap-y-[30px]"
+          onSubmit={handleSubmit}
         >
           <p className="text-[23px] font-[500] text-[#222831] tracking-[1px]">
             What can I help with?
@@ -109,11 +116,18 @@ export default function Home() {
             <input
               type="text"
               placeholder="Ask anything"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
               className="text-[#DFD0B8] bg-transparent border-none text-[15px] font-[300] w-[400px]"
             />
             <button
-              type="button"
+              type="submit"
               className="border-none rounded-full shadow-none bg-[#DFD0B8] flex justify-center items-center w-[30px] h-[30px] hover:bg-[#DFD0B8] cursor-pointer"
+              onClick={() => {
+                if (input.trim()) {
+                  router.push("/chat");
+                }
+              }}
             >
               <svg
                 width="14"
@@ -131,6 +145,11 @@ export default function Home() {
               </svg>
             </button>
           </div>
+          {error && (
+            <span className="-mt-[13px] text-[14px] font-[300] text-[#972508]">
+              {error}
+            </span>
+          )}
         </form>
         <section className="max-w-[800px] flex flex-wrap gap-[30px] justify-center">
           <div className="w-[365px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] suggestion">
@@ -144,40 +163,54 @@ export default function Home() {
               />
             </h1>
             <div className="flex flex-col gap-y-[10px] justify-center items-start">
-              <SuggestBtn text={"How to start learning programming?"} />
-              <SuggestBtn text={"What is Next.js used for?"} />
-              <SuggestBtn text={"Best laptop for coding?"} />
+              <SuggestBtn
+                text={"How to start learning programming?"}
+                setInput={setInput}
+              />
+              <SuggestBtn
+                text={"What is Next.js used for?"}
+                setInput={setInput}
+              />
+              <SuggestBtn
+                text={"Best laptop for coding?"}
+                setInput={setInput}
+              />
             </div>
           </div>
           <div className="w-[365px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] suggestion">
             <h1 className="w-full text-[20px] font-[600] tracking-[1px] text-[#DFD0B8] flex justify-between items-start gap-x-[60px]">
               LIfestyle
-              <Image
-                src={earthIcon}
-                alt="Programming"
-                width={36}
-                height={36}
-              />
+              <Image src={earthIcon} alt="Programming" width={36} height={36} />
             </h1>
             <div className="flex flex-col gap-y-[10px] justify-center items-start">
-              <SuggestBtn text={"How to lose weight without exercise?"} />
-              <SuggestBtn text={"Best way to improve English speaking"} />
-              <SuggestBtn text={"How to make money online?"} />
+              <SuggestBtn
+                text={"How to lose weight without exercise?"}
+                setInput={setInput}
+              />
+              <SuggestBtn
+                text={"Best way to improve English speaking"}
+                setInput={setInput}
+              />
+              <SuggestBtn
+                text={"How to make money online?"}
+                setInput={setInput}
+              />
             </div>
           </div>
           <div className="w-[365px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] suggestion">
             <h1 className="w-full text-[20px] font-[600] tracking-[1px] text-[#DFD0B8] flex justify-between items-start gap-x-[60px]">
               Content & Media
-              <Image
-                src={radioIcon}
-                alt="Programming"
-                width={36}
-                height={36}
-              />
+              <Image src={radioIcon} alt="Programming" width={36} height={36} />
             </h1>
             <div className="flex flex-col gap-y-[10px] justify-center items-start">
-              <SuggestBtn text={"How to start a YouTube channel?"} />
-              <SuggestBtn text={"What is AI and how does it work?"} />
+              <SuggestBtn
+                text={"How to start a YouTube channel?"}
+                setInput={setInput}
+              />
+              <SuggestBtn
+                text={"What is AI and how does it work?"}
+                setInput={setInput}
+              />
             </div>
           </div>
           <div className="w-[365px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] suggestion">
@@ -191,8 +224,14 @@ export default function Home() {
               />
             </h1>
             <div className="flex flex-col gap-y-[10px] justify-center items-start">
-              <SuggestBtn text={"What is the fastest car in the world?"} />
-              <SuggestBtn text={"Tell me a random fun fact"} />
+              <SuggestBtn
+                text={"What is the fastest car in the world?"}
+                setInput={setInput}
+              />
+              <SuggestBtn
+                text={"Tell me a random fun fact"}
+                setInput={setInput}
+              />
             </div>
           </div>
         </section>
