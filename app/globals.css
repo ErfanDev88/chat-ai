@@ -7,7 +7,7 @@
 }
 
 ::placeholder {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 300;
   color: #dfd0b8;
   letter-spacing: 1.5px;
@@ -78,7 +78,7 @@ button:hover {
 }
 /* main */
 main {
-  scrollbar-color: #393E46 #222831;
+  scrollbar-color: #393e46 #222831;
   scrollbar-width: thin;
 }
 .input {
@@ -86,6 +86,9 @@ main {
   box-shadow: 3px 4px 0 #000;
 }
 .input input:focus {
+  outline: none;
+}
+.input:focus {
   outline: none;
 }
 
@@ -100,6 +103,19 @@ main {
   box-shadow: 3px 4px 0 #000;
 }
 .response div {
+  border: solid 0.8px #000000e4;
+  box-shadow: 3px 4px 0 #000;
+  background: linear-gradient(to bottom, #dfd0b8 0%, #807666 350%);
+}
+
+/* signup */
+.signup section {
+  background: url("../public/login-signup-bg.png") no-repeat center,linear-gradient(to bottom, #dfd0b8 0%, #807666 350%);
+  background-size: cover;
+  border: solid 0.8px #000000e4;
+  box-shadow: -4px 4px 0 #000;
+}
+.form{
   border: solid 0.8px #000000e4;
   box-shadow: 3px 4px 0 #000;
   background: linear-gradient(to bottom, #dfd0b8 0%, #807666 350%);

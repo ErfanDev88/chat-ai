@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       <body
         className={`w-full h-screen flex bg-[url('../public/Background.png')] bg-cover bg-no-repeat bg-[#DFD0B8] ${poppins.variable} antialiased`}
       >
-        <Sidebar/>
+        
         {children}
       </body>
     </html>

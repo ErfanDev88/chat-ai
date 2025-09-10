@@ -1,14 +1,41 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "@/public/logo.png";
 import Image from "next/image";
 import TopicBtn from "../TopicBtn";
 import avatar from "@/public/avatar.png";
 import loginIll from "@/public/loginILL.png";
+import { useRouter } from "next/navigation";
 
 function Sidebar() {
+  const router = useRouter();
   const [isOpened, setIsOpened] = useState(true);
   const [isLoggedin, setIsLoggedin] = useState(false);
+  const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState("");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  };
+
+  const getInitials = (fullName) => {
+    if (!fullName) return "";
+    const words = fullName.trim().split(" ");
+    return words.map((word) => word[0].toUpperCase()).join("");
+  };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUser(parsedUser);
+      setIsLoggedin(true);
+      setProfile(getInitials(parsedUser.name));
+    }
+    console.log(storedUser);
+  }, []);
 
   return (
     <nav className="flex flex-col justify-between w-auto h-screen sidebar py-[25px] px-[20px] pr-[30px] text-[#DFD0B8] relative">
@@ -94,6 +121,7 @@ function Sidebar() {
               <button
                 type="button"
                 className="signup text-[#393E46] p-[8px] text-[13px] font-[500] border-none flex items-center justify-center gap-x-[4px] "
+                onClick={() => router.push("/signup")}
               >
                 <svg
                   width="16"
@@ -114,6 +142,7 @@ function Sidebar() {
               <button
                 type="button"
                 className="login bg-transparent shadow-none text-[#DFD0B8] p-[8px] px-[11px] text-[13px] font-[500] border-none flex items-center justify-center gap-x-[4px] "
+                onClick={() => router.push("/login")}
               >
                 <svg
                   width="17"
@@ -156,13 +185,20 @@ function Sidebar() {
             type="button"
             className="bg-[#393E46] gap-x-[15px] py-[9px] px-[16px] cursor-pointer flex justify-center items-center text-[16px] font-medium text-[#DFD0B8]"
           >
-            <Image src={avatar} alt="ChatAi | Ai assistant" />
-            {isOpened ? <span>Erfan Rezaie</span> : null}
+            <span className="rounded-full flex justify-center items-center w-[35px] h-[35px] bg-[#DFD0B8] text-[#222831] text-[14px] font-[500] tracking-[1px]">
+              {profile}
+            </span>
+            {isOpened ? (
+              <span>
+                {user.name}
+              </span>
+            ) : null}
           </button>
           {isOpened ? (
             <button
               type="button"
-              className="cursor-pointer border-none shadow-none bg-transparent"
+              className="cursor-pointer border-none shadow-none bg-transparent hover:bg-transparent"
+              onClick={handleLogout}
             >
               <svg
                 width="21"
