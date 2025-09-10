@@ -99,9 +99,6 @@ main {
   border: solid 0.8px #000000e4;
   box-shadow: 3px 4px 0 #000;
 }
-.response {
-  border-top: solid 0.8px rgba(34, 40, 49, 0.2);
-}
 .response div {
   border: solid 0.8px #000000e4;
   box-shadow: 3px 4px 0 #000;

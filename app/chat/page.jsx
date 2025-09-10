@@ -1,18 +1,38 @@
 "use client";
 import RequestText from "@/components/RequestText";
 import ResponseText from "@/components/ResponseText";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { RingLoader } from "react-spinners";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function page() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query") || "";
+
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState("");
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState(query);
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    if (query) {
+      handleSubmit();
+      router.replace("/chat");
+    }
+  }, [query]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     if (!input.trim()) {
       setError("This field cannot be empty!");
     } else {
@@ -37,7 +57,7 @@ export default function page() {
   };
 
   return (
-    <main className="w-full max-w-[1600px] h-full m-auto p-[100px] overflow-y-scroll">
+    <main className="w-full max-w-[1600px] h-full m-auto p-[100px] overflow-y-auto">
       <div className="h-full h-full flex flex-col justify-between items-center">
         <div className="w-full flex flex-col justify-center items-end gap-y-[25px]">
           {messages.map((m, index) => {
@@ -50,7 +70,7 @@ export default function page() {
           {loading && <RingLoader color="#393E46" size={20} />}
         </div>
         <form
-          className="flex flex-col justify-between items-center gap-y-[30px] fixed bottom-[60px]"
+          className="flex flex-col justify-between items-center gap-y-[30px] fixed bottom-[30px]"
           onSubmit={handleSubmit}
         >
           <div className="flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] gap-x-[10px] input">
@@ -101,6 +121,7 @@ export default function page() {
               {error}
             </span>
           )}
+          <div ref={messagesEndRef} />
         </form>
       </div>
     </main>

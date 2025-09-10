@@ -10,6 +10,13 @@
 !.yarn/releases
 !.yarn/versions
 
+/backend/node_modules
+/backend/.env
+/backend/.env.example
+backend/node_modules
+backend/.env
+backend/.env.example
+
 .env.local
 /.env.local
 # testing

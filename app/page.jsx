@@ -21,60 +21,14 @@ export default function Home() {
       setError("This field cannot be empty!");
     } else {
       setError("");
+      router.push(`/chat?query=${encodeURIComponent(input)}`);
     }
     console.log(input);
-
-    // const newMessages = [...messages, { role: "user", text: input }];
-    // setMessages(newMessages);
-    // setInput("");
-
-    // try {
-    //   const res = await axios.post("/api/chat", { message: input });
-    //   setMessages([...newMessages, { role: "bot", text: res.data.reply }]);
-    // } catch {
-    //   setMessages([
-    //     ...newMessages,
-    //     { role: "bot", text: "Error getting response" },
-    //   ]);
-    // }
   };
 
   return (
     <main className="m-auto">
       <div className="flex flex-col justify-between items-center gap-y-[70px]">
-        {/* <div style={{ padding: 20, maxWidth: 500, margin: "auto" }}>
-        <h1>Erfan AI Chat</h1>
-        <div
-          style={{
-            border: "1px solid #ccc",
-            padding: 10,
-            height: 400,
-            overflowY: "auto",
-          }}
-        >
-          {messages.map((m, i) => (
-            <div
-              key={i}
-              style={{ textAlign: m.role === "user" ? "right" : "left" }}
-            >
-              <b>{m.role === "user" ? "You" : "Bot"}: </b>
-              {m.text}
-            </div>
-          ))}
-        </div>
-        <div style={{ marginTop: 10, display: "flex" }}>
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            style={{ flex: 1, padding: 5 }}
-            placeholder="Type your message..."
-          />
-          <button onClick={sendMessage} style={{ marginLeft: 5 }}>
-            Send
-          </button>
-        </div>
-      </div> */}
         <h1 className="text-[50px] font-[700] tracking-[2px] text-[#222831] flex justify-center items-center gap-x-[27px]">
           Welcome to ChatAi
           <svg
@@ -123,11 +77,7 @@ export default function Home() {
             <button
               type="submit"
               className="border-none rounded-full shadow-none bg-[#DFD0B8] flex justify-center items-center w-[30px] h-[30px] hover:bg-[#DFD0B8] cursor-pointer"
-              onClick={() => {
-                if (input.trim()) {
-                  router.push("/chat");
-                }
-              }}
+             
             >
               <svg
                 width="14"
