@@ -6,6 +6,7 @@ import TopicBtn from "../TopicBtn";
 import avatar from "@/public/avatar.png";
 import loginIll from "@/public/loginILL.png";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function Sidebar() {
   const router = useRouter();
@@ -17,7 +18,7 @@ function Sidebar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.href = "/login";
+    window.location.href = "/sign-in";
   };
 
   const getInitials = (fullName) => {
@@ -34,7 +35,6 @@ function Sidebar() {
       setIsLoggedin(true);
       setProfile(getInitials(parsedUser.name));
     }
-    console.log(storedUser);
   }, []);
 
   return (
@@ -82,10 +82,10 @@ function Sidebar() {
         </button>
       ) : null}
       <div className="flex flex-col gap-y-[40px] justify-between items-start">
-        <h1 className="font-bold tracking-[4px] text-[37px] flex justify-center items-center">
-          <Image src={logo} alt="ChatAi | Ai assistant" />
+        <Link className="font-[700] tracking-[4px] text-[33px] text-[#DFD0B8] flex justify-center items-center no-underline" href={'/'}>
+          <Image src={logo} alt="ChatAi | Ai assistant" width={65} height={65} />
           {isOpened ? <span>ChatAi</span> : null}
-        </h1>
+        </Link>
         <button
           type="button"
           className=" bg-[#393E46] px-[15px] py-[11px] gap-x-[10px] cursor-pointer flex justify-center items-center text-[14px] font-medium text-[#DFD0B8]"
@@ -142,7 +142,7 @@ function Sidebar() {
               <button
                 type="button"
                 className="login bg-transparent shadow-none text-[#DFD0B8] p-[8px] px-[11px] text-[13px] font-[500] border-none flex items-center justify-center gap-x-[4px] "
-                onClick={() => router.push("/login")}
+                onClick={() => router.push("/sign-in")}
               >
                 <svg
                   width="17"
