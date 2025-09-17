@@ -17,9 +17,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${poppins.variable} antialiased`}>
       <body
-        className={`w-full h-screen flex bg-[url('../public/Background.png')] bg-cover bg-no-repeat bg-[#DFD0B8] ${poppins.variable} antialiased`}
+        className={`w-full h-screen flex flex-col bg-[url('../public/Background.png')] bg-cover bg-no-repeat bg-[#DFD0B8] ${poppins.variable} antialiased`}
       >
-        
         {children}
       </body>
     </html>

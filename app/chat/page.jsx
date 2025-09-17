@@ -60,7 +60,7 @@ export default function page() {
   return (
     <>
       <Sidebar />
-      <main className="w-full max-w-[1600px] h-full m-auto p-[100px] overflow-y-auto">
+      <main className="w-full max-w-[1600px] h-full m-auto mt-[90px] p-[20px] overflow-y-auto chatPage">
         <div className="h-full h-full flex flex-col justify-between items-center">
           <div className="w-full flex flex-col justify-center items-end gap-y-[25px]">
             {messages.map((m, index) => {
@@ -73,10 +73,10 @@ export default function page() {
             {loading && <RingLoader color="#393E46" size={20} />}
           </div>
           <form
-            className="flex flex-col justify-between items-center gap-y-[30px] fixed bottom-[30px]"
+            className="w-full flex flex-col justify-between items-center gap-y-[30px] p-[20px] fixed bottom-[-20px]"
             onSubmit={handleSubmit}
           >
-            <div className="flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] gap-x-[10px] input">
+            <div className="w-full flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] gap-x-[10px] input">
               <svg
                 width="18"
                 height="18"
@@ -97,11 +97,11 @@ export default function page() {
                 placeholder="Ask anything"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="text-[#DFD0B8] bg-transparent border-none text-[15px] font-[300] w-[500px]"
+                className="text-[#DFD0B8] bg-transparent border-none text-[15px] font-[300] w-full chatPageInput"
               />
               <button
                 type="submit"
-                className="border-none rounded-full shadow-none bg-[#DFD0B8] flex justify-center items-center w-[30px] h-[30px] hover:bg-[#DFD0B8] cursor-pointer"
+                className="border-none rounded-full shadow-none bg-[#DFD0B8] flex justify-center items-center w-[30px] h-[25px] hover:bg-[#DFD0B8] cursor-pointer"
               >
                 <svg
                   width="14"

@@ -30,13 +30,13 @@ export default function Home() {
   return (
     <>
       <Sidebar />
-      <main className="m-auto">
+      <main className="container m-auto max-w-[1600px] p-[20px]">
         <div className="flex flex-col justify-between items-center gap-y-[70px]">
-          <h1 className="text-[50px] font-[700] tracking-[2px] text-[#222831] flex justify-center items-center gap-x-[27px]">
+          <h1 className="welcome text-[32px] text-center font-[700] tracking-[2px] text-[#222831] flex justify-center items-center gap-x-[15px]">
             Welcome to ChatAi
             <svg
-              width="76"
-              height="81"
+              width="45"
+              height="50"
               viewBox="0 0 76 81"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -48,13 +48,13 @@ export default function Home() {
             </svg>
           </h1>
           <form
-            className="flex flex-col justify-between items-center gap-y-[30px]"
+            className="w-full flex flex-col justify-between items-center gap-y-[30px]"
             onSubmit={handleSubmit}
           >
             <p className="text-[23px] font-[500] text-[#222831] tracking-[1px]">
               What can I help with?
             </p>
-            <div className="flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] gap-x-[10px] input">
+            <div className="w-full flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] gap-x-[10px] input">
               <svg
                 width="18"
                 height="18"
@@ -75,11 +75,11 @@ export default function Home() {
                 placeholder="Ask anything"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="text-[#DFD0B8] bg-transparent border-none text-[15px] font-[300] w-[400px]"
+                className="text-[#DFD0B8] bg-transparent border-none text-[15px] font-[300] w-full"
               />
               <button
                 type="submit"
-                className="border-none rounded-full shadow-none bg-[#DFD0B8] flex justify-center items-center w-[30px] h-[30px] hover:bg-[#DFD0B8] cursor-pointer"
+                className="border-none rounded-full shadow-none bg-[#DFD0B8] flex justify-center items-center w-[30px] h-[25px] hover:bg-[#DFD0B8] cursor-pointer"
               >
                 <svg
                   width="14"
@@ -103,8 +103,8 @@ export default function Home() {
               </span>
             )}
           </form>
-          <section className="max-w-[800px] flex flex-wrap gap-[30px] justify-center">
-            <div className="w-[365px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] suggestion">
+          <section className="w-full flex flex-wrap gap-[15px] justify-center suggestionContainer">
+            <div className="w-[270px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] grow suggestion">
               <h1 className="w-full text-[20px] font-[600] tracking-[1px] text-[#DFD0B8] flex justify-between items-start gap-x-[60px]">
                 Programming & Tech
                 <Image
@@ -114,7 +114,7 @@ export default function Home() {
                   height={36}
                 />
               </h1>
-              <div className="flex flex-col gap-y-[10px] justify-center items-start">
+              <div className="w-full flex flex-col gap-y-[10px] justify-center items-start">
                 <SuggestBtn
                   text={"How to start learning programming?"}
                   setInput={setInput}
@@ -129,7 +129,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="w-[365px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] suggestion">
+            <div className="w-[270px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] grow suggestion">
               <h1 className="w-full text-[20px] font-[600] tracking-[1px] text-[#DFD0B8] flex justify-between items-start gap-x-[60px]">
                 LIfestyle
                 <Image
@@ -139,7 +139,7 @@ export default function Home() {
                   height={36}
                 />
               </h1>
-              <div className="flex flex-col gap-y-[10px] justify-center items-start">
+              <div className="w-full flex flex-col gap-y-[10px] justify-center items-start">
                 <SuggestBtn
                   text={"How to lose weight without exercise?"}
                   setInput={setInput}
@@ -154,7 +154,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="w-[365px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] suggestion">
+            <div className="w-[270px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] grow suggestion">
               <h1 className="w-full text-[20px] font-[600] tracking-[1px] text-[#DFD0B8] flex justify-between items-start gap-x-[60px]">
                 Content & Media
                 <Image
@@ -164,7 +164,7 @@ export default function Home() {
                   height={36}
                 />
               </h1>
-              <div className="flex flex-col gap-y-[10px] justify-center items-start">
+              <div className="w-full flex flex-col gap-y-[10px] justify-center items-start">
                 <SuggestBtn
                   text={"How to start a YouTube channel?"}
                   setInput={setInput}
@@ -175,7 +175,7 @@ export default function Home() {
                 />
               </div>
             </div>
-            <div className="w-[365px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] suggestion">
+            <div className="w-[270px] flex flex-col justify-between items-start p-[15px] gap-y-[23px] bg-[#393E46] grow suggestion">
               <h1 className="w-full text-[20px] font-[600] tracking-[1px] text-[#DFD0B8] flex justify-between items-start gap-x-[60px]">
                 Cars & Fun
                 <Image
@@ -185,7 +185,7 @@ export default function Home() {
                   height={36}
                 />
               </h1>
-              <div className="flex flex-col gap-y-[10px] justify-center items-start">
+              <div className="w-full flex flex-col gap-y-[10px] justify-center items-start">
                 <SuggestBtn
                   text={"What is the fastest car in the world?"}
                   setInput={setInput}

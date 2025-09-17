@@ -91,9 +91,10 @@ export default function page() {
   };
 
   return (
-    <div className="pl-[150px] w-full flex justify-between items-center signup">
-      <main className="w-[50%] h-full flex flex-col justify-start items-start gap-y-[150px] pt-[30px]">
-        <h1 className="font-bold tracking-[4px] text-[37px] text-[#222831] gap-x-[20px] flex justify-center items-center">
+    <div className="p-[20px] mx-auto w-full flex justify-between items-center signup">
+      <main className="w-full h-full flex flex-col justify-start items-center gap-y-[50px] pt-[10px]">
+        <Link className="w-full font-[700] tracking-[4px] text-[37px] text-[#222831] gap-x-[20px] flex justify-start items-center no-underline"
+        href={'/'}>
           <Image
             src={bluelogo}
             alt="ChatAi | Ai assistant"
@@ -101,23 +102,23 @@ export default function page() {
             height={49}
           />
           <span>ChatAi</span>
-        </h1>
+        </Link>
         <form
-          className="flex flex-col justify-between items-center gap-y-[40px] text-[#222831] py-[40px] px-[40px] w-[65%] form"
+          className="flex flex-col justify-between items-center gap-y-[40px] text-[#222831] p-[20px] w-full form"
           onSubmit={handleSubmit}
         >
           <div className="flex flex-col justify-center items-center gap-y-[10px]">
-            <h1 className="font-[700] text-[30px] tracking-[2%]">
+            <h1 className="font-[700] text-[25px] tracking-[2%]">
               Lets Sign In into Chat.ai
             </h1>
             <span className="text-[14px] font-[400] tracking-[2%]">
-              Don’t have an Account?
+               Don’t have an Account? 
               <Link
                 href={"/signup"}
                 className="font-[500] text-[#324158] no-underline"
-              >
-                signup
-              </Link>
+              > 
+                 signup 
+              </Link> 
             </span>
           </div>
           <div className="flex flex-col justify-center items-start w-full gap-y-[25px]">
@@ -131,7 +132,7 @@ export default function page() {
                 placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="text-[#DFD0B8] border-none text-[15px] font-[300] w-full flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] input outline-none"
+                className="text-[#DFD0B8] border-none text-[15px] font-[300] w-full flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] outline-none" style={{border: "solid 0.8px #000000e4", boxShadow: "3px 4px 0 #000"}}
               />
               {errors.email && (
                 <span className="text-[#972508] text-[14px] font-[300]">
@@ -148,7 +149,7 @@ export default function page() {
               <label htmlFor="Password" className="font-[500] text-[17px]">
                 Password
               </label>
-              <div className="w-full flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] gap-x-[10px] input">
+              <div className="w-full flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] gap-x-[10px]" style={{border: "solid 0.8px #000000e4", boxShadow: "3px 4px 0 #000"}}>
                 <input
                   id="Password"
                   type={isPasswordVisible ? "text" : "password"}
@@ -260,7 +261,7 @@ export default function page() {
           </button>
         </form>
       </main>
-      <section className="w-[50%] h-full flex justify-center items-center">
+      <section className="w-[50%] h-full hidden justify-center items-center">
         <Image src={signinIll} alt="ChatAi" className="w-[80%] h-auto" />
       </section>
     </div>

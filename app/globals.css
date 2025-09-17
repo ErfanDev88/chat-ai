@@ -54,20 +54,20 @@ button:hover {
 .Sidebarlogin {
   box-shadow: 3px 3px 0px #000;
 }
-.Sidebarlogin .signup {
-  box-shadow: 3px 3px 0 #222831;
-  background-color: #dfd0b8;
+.Sidebarlogin .signupBtn {
+  box-shadow: 3px 3px 0 #222831 !important;
+  background-color: #dfd0b8 !important;
 }
-.Sidebarlogin .signup:hover {
+.Sidebarlogin .signupBtn:hover {
   background-color: #cdbda3;
   cursor: pointer;
 }
-.Sidebarlogin .login {
+.Sidebarlogin .loginBtn {
   border: solid 1px #dfd0b8;
   cursor: pointer;
   position: relative;
 }
-.Sidebarlogin .login::before {
+.Sidebarlogin .loginBtn::before {
   content: "";
   width: 100%;
   height: 100%;
@@ -110,13 +110,143 @@ main {
 
 /* signup */
 .signup section {
-  background: url("../public/login-signup-bg.png") no-repeat center,linear-gradient(to bottom, #dfd0b8 0%, #807666 350%);
+  background: url("../public/login-signup-bg.png") no-repeat center,
+    linear-gradient(to bottom, #dfd0b8 0%, #807666 350%);
   background-size: cover;
   border: solid 0.8px #000000e4;
   box-shadow: -4px 4px 0 #000;
 }
-.form{
+.form {
   border: solid 0.8px #000000e4;
   box-shadow: 3px 4px 0 #000;
   background: linear-gradient(to bottom, #dfd0b8 0%, #807666 350%);
+}
+
+/* Responsive */
+
+.container {
+  margin-top: 100px;
+}
+.mobile-nav {
+  background-image: linear-gradient(
+    to bottom,
+    #252c36f2 40%,
+    #5c6777e2 200%
+  ) !important;
+  backdrop-filter: blur(10px);
+}
+.overlayMenu {
+  background-image: linear-gradient(
+    to bottom,
+    #252c36 40%,
+    #5c6777 200%
+  ) !important;
+  box-shadow: inset 3px 3px 30px rgba(148, 137, 121, 0.1), 8px 5px 0px #000 !important;
+  z-index: 1;
+}
+
+/* md */
+@media (min-width: 768px) {
+  body {
+    flex-direction: row !important;
+  }
+  main{
+    padding: 20px !important;
+  }
+  .container {
+    margin: auto;
+    padding: 0;
+  }
+  .mobile-nav {
+    display: none;
+  }
+  .welcome {
+    font-size: 50px;
+    font: 700;
+    column-gap: 27px;
+  }
+  .welcome svg {
+    width: 76px;
+    height: 81px;
+  }
+  .overlayMenu {
+    display: none;
+  }
+  .sidebar {
+    display: flex;
+  }
+  .input {
+    width: auto;
+  }
+  .input input {
+    width: 400px;
+  }
+  .input button {
+    width: 30px;
+    height: 30px;
+  }
+  .suggestionContainer {
+    max-width: 800px;
+    gap: 30px;
+  }
+  .suggestion {
+    width: 270px;
+    flex-grow: 1;
+  }
+  .suggestion button {
+    width: auto;
+  }
+
+  /* Chat page */
+  .chatPage {
+    padding: 100px;
+    margin-top: 0;
+  }
+  .chatPage form {
+    padding: 0;
+    bottom: 30px;
+  }
+  .chatPageInput {
+    width: 500px;
+  }
+
+  /* sign in */
+  .signup {
+    padding: 0;
+    padding-left: 40px;
+    margin: 0;
+  }
+  .signup section {
+    display: flex;
+  }
+  .signup main {
+    width: 50%;
+    align-items: flex-start;
+    padding-top: 30px;
+    row-gap: 50px;
+  }
+  .signup main form {
+    width: 90%;
+    padding: 40px;
+  }
+  .signup main form h1 {
+    font-size: 30px;
+  }
+  .signup main form .signupTitle {
+    font-size: 40px;
+    text-align: center;
+  }
+}
+/* lg */
+@media (min-width: 1024px) {
+  .signup main form {
+    width: 90%;
+  }
+}
+
+/* xl */
+@media (min-width: 1280px) {
+  .signup main form {
+    width: 70%;
+  }
 }
