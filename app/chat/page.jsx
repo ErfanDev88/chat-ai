@@ -19,8 +19,6 @@ export default function page() {
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
-
-
   useEffect(() => {
     if (query) {
       handleSubmit();
@@ -42,6 +40,23 @@ export default function page() {
       try {
         const res = await axios.post("/api/chat", { message: input });
         setMessages([...newMessages, { role: "bot", text: res.data.reply }]);
+        const botReply = res.data.reply;
+
+        const user = JSON.parse(localStorage.getItem("user"));
+        const userId = user.id;
+        await fetch("http://localhost:1337/api/chats", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            data: {
+              requestText: input,
+              responseText: botReply,
+            },
+          }),
+        });
       } catch {
         setMessages([
           ...newMessages,
@@ -52,16 +67,43 @@ export default function page() {
       }
     }
   };
+
+  // const [chats, setChats] = useState([]);
+  // console.log(chats);
+  // useEffect(() => {
+  //   async function fetchChats() {
+  //     const token = localStorage.getItem("token");
+  //     const user = JSON.parse(localStorage.getItem("user"));
+  //     const userId = user.id;
+  //     try {
+  //       const res = await fetch(
+  //         `http://localhost:1337/api/chats?filters[user][id][$eq]=${userId}&sort=createdAt:asc`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         }
+  //       );
+  //       const data = await res.json();
+  //       setChats(data.data || []);
+  //     } catch (err) {
+  //       console.error("Error fetching chats:", err);
+  //     }
+  //   }
+  //   fetchChats();
+  // }, []);
+
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
+  console.log(messages);
   return (
     <>
       <Sidebar />
       <main className="w-full max-w-[1600px] h-full m-auto mt-[90px] p-[20px] overflow-y-auto chatPage">
-        <div className="h-full h-full flex flex-col justify-between items-center">
+        <div className="w-full h-full flex flex-col justify-between items-center">
           <div className="w-full flex flex-col justify-center items-end gap-y-[25px]">
             {messages.map((m, index) => {
               if (m.role === "user") {
@@ -73,7 +115,7 @@ export default function page() {
             {loading && <RingLoader color="#393E46" size={20} />}
           </div>
           <form
-            className="w-full flex flex-col justify-between items-center gap-y-[30px] p-[20px] fixed bottom-[-20px]"
+            className="w-full flex flex-col justify-between items-center gap-y-[30px] p-[20px] fixed bottom-[-20px] chatFormContainer"
             onSubmit={handleSubmit}
           >
             <div className="w-full flex justify-center items-center bg-[#393E46] px-[16px] py-[13px] gap-x-[10px] input">

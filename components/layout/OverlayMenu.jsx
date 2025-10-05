@@ -133,10 +133,7 @@ function OverlayMenu() {
             <span className="text-[14px] font-light tracking-[2px]">
               Saved Topics
             </span>
-            <TopicBtn text={"how to create a database"} />
-            <TopicBtn text={"What is nextJS?"} />
-            <TopicBtn text={"Best CMS for React"} />
-            <TopicBtn text={"A list of popular fonts"} />
+            <TopicBtn text={"Nothing yet..."} />
           </div>
         ) : null}
       </div>

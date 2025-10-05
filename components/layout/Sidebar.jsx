@@ -153,6 +153,7 @@ function Sidebar() {
           <button
             type="button"
             className=" bg-[#393E46] px-[15px] py-[11px] gap-x-[10px] cursor-pointer flex justify-center items-center text-[14px] font-medium text-[#DFD0B8]"
+            onClick={()=>window.location.reload(true)}
           >
             <svg
               width="20"
@@ -234,10 +235,7 @@ function Sidebar() {
                 <span className="text-[14px] font-light tracking-[2px]">
                   Saved Topics
                 </span>
-                <TopicBtn text={"how to create a database"} />
-                <TopicBtn text={"What is nextJS?"} />
-                <TopicBtn text={"Best CMS for React"} />
-                <TopicBtn text={"A list of popular fonts"} />
+                <TopicBtn text={"Nothing yet..."} />
               </div>
             ) : null
           ) : null}

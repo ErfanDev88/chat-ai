@@ -175,6 +175,9 @@ main {
   .sidebar {
     display: flex;
   }
+  .chatFormContainer{
+    width: auto;
+  }
   .input {
     width: auto;
   }
