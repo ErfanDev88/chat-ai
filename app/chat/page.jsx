@@ -8,7 +8,7 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Sidebar from "@/components/layout/Sidebar";
 
-export default function page() {
+export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
