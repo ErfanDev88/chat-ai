@@ -6,41 +6,46 @@ import ResponseText from "@/components/ResponseText";
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { RingLoader } from "react-spinners";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
 import Sidebar from "@/components/layout/Sidebar";
 
 export default function Page() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const query = searchParams.get("query") || "";
 
   const [messages, setMessages] = useState([]);
   const [error, setError] = useState("");
-  const [input, setInput] = useState(query);
+  const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    if (query) {
-      handleSubmit();
-      router.replace("/chat");
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get("query");
+      console.log(query);
+      if (query) {
+        setInput(query);
+        handleSubmit(undefined, query);
+        window.history.replaceState(null, "", "/chat");
+      }
     }
-  }, [query]);
+  }, []);
 
-  const handleSubmit = async (e) => {
+ 
+  const handleSubmit = async (e, predefinedInput) => {
     if (e) e.preventDefault();
-    if (!input.trim()) {
+
+    const messageText = predefinedInput || input;
+
+    if (!messageText.trim()) {
       setError("This field cannot be empty!");
     } else {
       setError("");
-      const newMessages = [...messages, { role: "user", text: input }];
+      const newMessages = [...messages, { role: "user", text: messageText }];
       setMessages(newMessages);
       setInput("");
       setLoading(true);
 
       try {
-        const res = await axios.post("/api/chat", { message: input });
+        const res = await axios.post("/api/chat", { message: messageText });
         setMessages([...newMessages, { role: "bot", text: res.data.reply }]);
         const botReply = res.data.reply;
 
@@ -54,7 +59,7 @@ export default function Page() {
           },
           body: JSON.stringify({
             data: {
-              requestText: input,
+              requestText: messageText,
               responseText: botReply,
             },
           }),
@@ -69,31 +74,6 @@ export default function Page() {
       }
     }
   };
-
-  // const [chats, setChats] = useState([]);
-  // console.log(chats);
-  // useEffect(() => {
-  //   async function fetchChats() {
-  //     const token = localStorage.getItem("token");
-  //     const user = JSON.parse(localStorage.getItem("user"));
-  //     const userId = user.id;
-  //     try {
-  //       const res = await fetch(
-  //         `http://localhost:1337/api/chats?filters[user][id][$eq]=${userId}&sort=createdAt:asc`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           },
-  //         }
-  //       );
-  //       const data = await res.json();
-  //       setChats(data.data || []);
-  //     } catch (err) {
-  //       console.error("Error fetching chats:", err);
-  //     }
-  //   }
-  //   fetchChats();
-  // }, []);
 
   useEffect(() => {
     if (messagesEndRef.current) {
