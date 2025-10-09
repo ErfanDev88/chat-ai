@@ -6,7 +6,7 @@ module.exports = ({ env }) => ({
     keys: env.array("APP_KEYS", ["keyA", "keyB"]),
   },
 
-  url: env("PUBLIC_URL", "https://chat-ai-limited.vercel.app"),
+  url: env("PUBLIC_URL", "https://chat-ai-uf5u.onrender.com"),
 
   webhooks: {
     populateRelations: env.bool("WEBHOOKS_POPULATE_RELATIONS", false),
@@ -19,8 +19,8 @@ module.exports = ({ env }) => ({
     },
   },
 
-  allowedHosts: env.array('ALLOWED_HOSTS', [
-    'chat-ai-limited.vercel.app',
-    'localhost',
+  allowedHosts: env.array("ALLOWED_HOSTS", [
+    "chat-ai-uf5u.onrender.com",
+    "localhost",
   ]),
 });
